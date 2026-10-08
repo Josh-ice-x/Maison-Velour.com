@@ -1,0 +1,3576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maison Velours — Discreet, considered shopping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ---------- Maison Velours v2 design system ---------- */
+:root {
+  --ink: #241726;
+  --mute: #756474;
+  --surface: #fbf6f4;
+  --card: #fff;
+  --accent: #e8b4bc;
+  --gold: #c9a15a;
+  --sale: #c6425e;
+  --line: rgba(36, 23, 38, .10);
+  --shadow: 0 16px 40px rgba(36, 23, 38, .10);
+  --radius: 16px
+}
+html[data-theme="dark"] {
+  --ink: #f7edf3;
+  --mute: #b9a9b5;
+  --surface: #17121a;
+  --card: #211a24;
+  --line: rgba(255, 255, 255, .11);
+  --gold: #d8b76e;
+  --accent: #b97886;
+  --sale: #e46b84
+}
+* {
+  box-sizing: border-box
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  max-width: 100vw;
+  scroll-behavior: smooth
+}
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  transition: background .25s, color .25s
+}
+button, input, textarea, select {
+  font: inherit
+}
+button {
+  cursor: pointer
+}
+[hidden] {
+  display: none!important
+}
+a {
+  color: inherit;
+  text-decoration: none
+}
+h1, h2, h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 600
+}
+.icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+  flex: none
+}
+.icon.sm {
+  width: 15px;
+  height: 15px
+}
+.icon.lg {
+  width: 22px;
+  height: 22px
+}
+#topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
+  box-shadow: 0 2px 18px rgba(36, 23, 38, .05)
+}
+#main {
+  padding-top: 132px
+}
+#marquee {
+  background: var(--ink);
+  color: var(--surface);
+  padding: 7px 0;
+  overflow: hidden;
+  white-space: nowrap
+}
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 24s linear infinite
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0)
+  }
+  100% {
+    transform: translateX(-50%)
+  }
+}
+.track span {
+  font-size: 11px;
+  letter-spacing: .45px;
+  padding: 0 30px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center
+}
+header {
+  background: color-mix(in srgb, var(--card) 94%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line)
+}
+.header-row {
+  max-width: 1180px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 20px 9px;
+  gap: 12px
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: Georgia, serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: .2px
+}
+.logo-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, var(--ink), #6c4d61);
+  display: grid;
+  place-items: center;
+  color: var(--surface);
+  box-shadow: 0 7px 18px rgba(36, 23, 38, .18)
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px
+}
+.icon-btn {
+  position: relative;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center
+}
+.icon-btn:hover {
+  border-color: var(--gold);
+  background: var(--surface)
+}
+#cart-count {
+  position: absolute;
+  top: -6px;
+  right: -5px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  background: var(--sale);
+  color: #fff;
+  border-radius: 99px;
+  font-size: 9px;
+  display: grid;
+  place-items: center;
+  font-weight: 800
+}
+#auth-link {
+  font-size: 12px;
+  color: var(--mute);
+  border: 0;
+  background: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 170px
+}
+.email {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+nav#cats {
+  max-width: 1180px;
+  margin: auto;
+  display: flex;
+  gap: 20px;
+  padding: 0 20px 11px;
+  overflow: auto
+}
+nav#cats button {
+  border: 0;
+  background: none;
+  color: var(--mute);
+  font-size: 12.5px;
+  white-space: nowrap;
+  padding: 3px 0;
+  border-bottom: 2px solid transparent
+}
+nav#cats button.active {
+  color: var(--ink);
+  font-weight: 700;
+  border-bottom-color: var(--accent)
+}
+.page {
+  min-height: 70vh
+}
+.container {
+  max-width: 1180px;
+  margin: auto;
+  padding: 0 20px
+}
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 74px 20px 66px;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--card), var(--surface))
+}
+.hero:before, .hero:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(5px);
+  pointer-events: none
+}
+.hero:before {
+  width: 260px;
+  height: 260px;
+  left: 4%;
+  top: -110px;
+  background: radial-gradient(circle, #f3d4d9, transparent 70%);
+  opacity: .7
+}
+.hero:after {
+  width: 300px;
+  height: 300px;
+  right: 2%;
+  bottom: -160px;
+  background: radial-gradient(circle, #f1ce9c, transparent 70%);
+  opacity: .55
+}
+.eyebrow {
+  position: relative;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: var(--gold);
+  font-weight: 800
+}
+.hero h1 {
+  position: relative;
+  font-size: clamp(36px, 7vw, 64px);
+  line-height: 1.04;
+  margin: 14px 0
+}
+.hero p {
+  position: relative;
+  color: var(--mute);
+  max-width: 550px;
+  margin: 0 auto 25px;
+  font-size: 15px;
+  line-height: 1.7
+}
+.btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-weight: 700;
+  font-size: 13px;
+  transition: .2s
+}
+.btn.primary {
+  background: var(--ink);
+  color: var(--surface)
+}
+.btn.gold {
+  background: var(--gold);
+  color: #241726
+}
+.btn.ghost {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink)
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 22px rgba(36, 23, 38, .14)
+}
+.trust {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 28px 0
+}
+.trust-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center
+}
+.trust-card .icon-wrap {
+  margin: auto;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--gold)
+}
+.trust-card strong {
+  display: block;
+  font-size: 12px;
+  margin-top: 9px
+}
+.trust-card span {
+  display: block;
+  color: var(--mute);
+  font-size: 10.5px;
+  margin-top: 3px
+}
+.section {
+  padding: 25px 0
+}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px;
+  margin-bottom: 16px
+}
+.section-head h2 {
+  font-size: 22px
+}
+.muted {
+  color: var(--mute);
+  font-size: 12px
+}
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px
+}
+.cat-tile {
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 14px;
+  padding: 15px 8px;
+  text-align: center
+}
+.cat-tile:hover, .cat-tile.active {
+  border-color: var(--gold);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px)
+}
+.cat-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: auto auto 8px;
+  background: var(--surface);
+  color: var(--gold)
+}
+.cat-tile span {
+  font-size: 11px;
+  font-weight: 700
+}
+.shop-toolbar {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin-bottom: 16px
+}
+.search {
+  position: relative;
+  flex: 1
+}
+.search .icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold)
+}
+.search input, .toolbar-select {
+  width: 100%;
+  padding: 12px 13px 12px 40px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  outline: none
+}
+.toolbar-select {
+  width: auto;
+  padding: 12px 34px 12px 12px
+}
+.search input:focus, .toolbar-select:focus {
+  border-color: var(--gold)
+}
+.search input {
+  padding-right: 36px
+}
+.search-clear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: none;
+  background: none;
+  color: var(--mute);
+  cursor: pointer;
+  border-radius: 50%
+}
+.search-clear:hover {
+  color: var(--ink);
+  background: var(--line)
+}
+.search-clear[hidden] {
+  display: none
+}
+.search-clear .icon {
+  position: static;
+  color: inherit;
+  transform: none
+}
+.filter-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  margin-bottom: 17px
+}
+.filter-chip {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--mute);
+  padding: 7px 10px;
+  border-radius: 99px;
+  font-size: 11px
+}
+.filter-chip.active {
+  background: var(--ink);
+  color: var(--surface);
+  border-color: var(--ink)
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 13px
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(36, 23, 38, .04);
+  transition: .25s
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow)
+}
+.media {
+  height: 185px;
+  position: relative;
+  background: var(--surface)
+}
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block
+}
+.badge {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background: rgba(36, 23, 38, .72);
+  color: #fff;
+  border-radius: 99px;
+  padding: 4px 8px;
+  font-size: 9px;
+  font-weight: 700
+}
+.wish {
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  border: 0;
+  background: rgba(255, 255, 255, .9);
+  color: var(--ink);
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center
+}
+.wish.active {
+  color: var(--sale)
+}
+.discount {
+  position: absolute;
+  right: 9px;
+  bottom: 9px;
+  background: var(--sale);
+  color: #fff;
+  padding: 4px 7px;
+  border-radius: 5px;
+  font-size: 9px;
+  font-weight: 800
+}
+.card-body {
+  padding: 13px
+}
+.card h3 {
+  font-size: 15px;
+  margin: 0 0 3px
+}
+.card .cat {
+  font-size: 10.5px;
+  color: var(--mute)
+}
+.rating-line {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 8px 0;
+  font-size: 10px
+}
+.stars {
+  letter-spacing: 1px;
+  color: var(--gold)
+}
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px
+}
+.price {
+  font-size: 14px;
+  font-weight: 800
+}
+.was {
+  text-decoration: line-through;
+  color: var(--mute);
+  font-size: 10px;
+  margin-right: 3px
+}
+.card-actions {
+  display: flex;
+  gap: 7px;
+  margin-top: 10px
+}
+.card-actions .btn {
+  flex: 1;
+  padding: 8px 7px;
+  font-size: 10.5px
+}
+.product-page {
+  padding: 30px 0 70px
+}
+.back {
+  border: 0;
+  background: none;
+  color: var(--mute);
+  font-size: 12px;
+  padding: 0 0 16px;
+  display: flex;
+  gap: 6px;
+  align-items: center
+}
+.product-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px
+}
+.product-image {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden
+}
+.product-image img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover
+}
+.product-info h1 {
+  font-size: 34px;
+  margin: 5px 0 8px
+}
+.product-info .lead {
+  color: var(--mute);
+  line-height: 1.7;
+  font-size: 14px
+}
+.meta-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 15px 0
+}
+.pill {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 99px;
+  padding: 6px 9px;
+  font-size: 10px;
+  color: var(--mute)
+}
+.big-rating {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 14px 0
+}
+.big-rating .stars {
+  font-size: 18px
+}
+.product-price {
+  font-size: 23px;
+  font-weight: 800
+}
+.product-actions {
+  display: flex;
+  gap: 9px;
+  margin: 18px 0
+}
+.product-actions .btn {
+  flex: 1
+}
+.assurance {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 20px
+}
+.assurance div {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 10px;
+  color: var(--mute);
+  display: flex;
+  gap: 7px;
+  align-items: center
+}
+.detail-card {
+  margin-top: 28px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px
+}
+.detail-card h2 {
+  font-size: 19px;
+  margin-bottom: 10px
+}
+.detail-card p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--mute)
+}
+.review-form {
+  display: grid;
+  gap: 9px
+}
+.review-form input, .review-form textarea {
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 11px;
+  background: var(--surface);
+  color: var(--ink)
+}
+.review-stars {
+  display: flex;
+  gap: 4px
+}
+.review-stars button {
+  border: 0;
+  background: none;
+  color: var(--mute);
+  font-size: 21px;
+  padding: 2px
+}
+.review-stars button.active {
+  color: var(--gold)
+}
+.review-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px
+}
+.review {
+  border-top: 1px solid var(--line);
+  padding-top: 12px
+}
+.review-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px
+}
+.review p {
+  font-size: 12px;
+  color: var(--mute);
+  line-height: 1.6;
+  margin: 6px 0
+}
+.cart-page {
+  padding: 32px 0 70px
+}
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1.5fr .8fr;
+  gap: 24px
+}
+.cart-items, .summary {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px
+}
+.cart-row {
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0
+}
+.cart-row:last-child {
+  border-bottom: 0
+}
+.cart-row img {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  object-fit: cover
+}
+.cart-row h3 {
+  font-size: 14px;
+  margin: 0 0 3px
+}
+.cart-row p {
+  margin: 0;
+  color: var(--mute);
+  font-size: 11px
+}
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px
+}
+.qty button {
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--ink)
+}
+.summary {
+  height: max-content;
+  position: sticky;
+  top: 130px
+}
+.summary h2 {
+  font-size: 19px
+}
+.sumline {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  color: var(--mute);
+  font-size: 12px
+}
+.sumline.total {
+  border-top: 1px solid var(--line);
+  margin-top: 7px;
+  padding-top: 14px;
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 16px
+}
+.summary .btn {
+  width: 100%;
+  margin-top: 8px
+}
+.empty {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--mute);
+  background: var(--card);
+  border: 1px dashed var(--line);
+  border-radius: 16px
+}
+.empty .icon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 10px
+}
+.info-strip {
+  margin: 20px 0;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start
+}
+.info-strip strong {
+  font-size: 12px
+}
+.info-strip span {
+  display: block;
+  color: var(--mute);
+  font-size: 10.5px;
+  margin-top: 3px;
+  line-height: 1.5
+}
+footer {
+  border-top: 1px solid var(--line);
+  padding: 35px 20px;
+  color: var(--mute);
+  font-size: 11px
+}
+.footer-inner {
+  max-width: 1180px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px
+}
+.footer-brand {
+  font-family: Georgia, serif;
+  color: var(--ink);
+  font-size: 17px
+}
+.footer-col strong {
+  display: block;
+  color: var(--ink);
+  margin-bottom: 8px
+}
+.footer-col span {
+  display: block;
+  margin: 5px 0
+}
+.fab {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 40;
+  border: 0;
+  background: var(--ink);
+  color: var(--surface);
+  padding: 11px 14px;
+  border-radius: 99px;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(36, 23, 38, .25);
+  font-size: 11px;
+  font-weight: 700
+}
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(36, 23, 38, .5);
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  overflow: auto
+}
+.modal-box {
+  width: min(520px, calc(100vw - 24px));
+  min-width: 0;
+  max-width: 520px;
+  max-height: calc(100dvh - 24px);
+  overflow: auto;
+  overflow-x: hidden;
+  background: var(--card);
+  border-radius: 18px;
+  padding: 24px;
+  position: relative;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, .25)
+}
+.modal-close {
+  position: absolute;
+  right: 13px;
+  top: 13px;
+  border: 0;
+  background: none;
+  color: var(--mute)
+}
+.modal h2 {
+  font-size: 21px;
+  margin: 0 0 5px
+}
+.modal p {
+  font-size: 12px;
+  color: var(--mute);
+  line-height: 1.6
+}
+.field {
+  display: grid;
+  gap: 5px;
+  margin: 11px 0;
+  min-width: 0
+}
+.field label {
+  font-size: 10px;
+  color: var(--mute);
+  font-weight: 700
+}
+.field input, .field textarea {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 11px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 8px;
+  box-sizing: border-box;
+  outline: none
+}
+.field input:focus, .field textarea:focus {
+  border-color: var(--gold)
+}
+.card-field {
+  position: relative
+}
+.card-input-wrap {
+  position: relative
+}
+.card-input-wrap input {
+  padding-right: 78px
+}
+.card-brand {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 54px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  pointer-events: none
+}
+.card-brand svg {
+  width: 52px;
+  height: 30px;
+  display: block
+}
+.card-brand.is-hidden {
+  display: none
+}
+.card-status {
+  min-height: 15px;
+  margin-top: 3px;
+  font-size: 10px
+}
+.card-status.valid {
+  color: #2d8a57
+}
+.card-status.invalid {
+  color: var(--sale)
+}
+.card-field .icon {
+  position: absolute;
+  right: 11px;
+  bottom: 31px;
+  color: var(--gold)
+}
+.card-field.has-brand .icon {
+  display: none
+}
+.payment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-items: start
+}
+.card-field {
+  position: relative
+}
+.card-field .icon {
+  position: absolute;
+  right: 11px;
+  bottom: 11px;
+  color: var(--gold)
+}
+.checkout-note {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 11px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 10px;
+  color: var(--mute);
+  font-size: 10px;
+  line-height: 1.5;
+  margin: 12px 0
+}
+.checkout-note .icon {
+  margin-top: 1px;
+  flex: none
+}
+@media(max-width:480px) {
+  .modal {
+    padding: 10px;
+    align-items: center
+  }
+  .modal-box {
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+    padding: 20px;
+    border-radius: 18px
+  }
+  .payment-grid {
+    grid-template-columns: 1fr 1fr
+  }
+  .modal h2 {
+    font-size: 22px
+  }
+  .modal p {
+    overflow-wrap: anywhere
+  }
+}
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  pointer-events: none;
+  background: var(--ink);
+  color: var(--surface);
+  padding: 10px 15px;
+  border-radius: 99px;
+  font-size: 11px;
+  z-index: 120;
+  transition: .25s
+}
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0)
+}
+.checkout-skin .modal-box {
+  padding: 26px 24px 24px
+}
+.checkout-page {
+  padding: 32px 0 70px
+}
+.checkout-page .container {
+  max-width: 620px
+}
+.checkout-page .checkout-skin {
+  position: static
+}
+.checkout-page .modal-box {
+  width: 100%;
+  max-width: 100%;
+  max-height: none;
+  overflow: visible;
+  box-shadow: var(--shadow);
+  margin: 0
+}
+@media(max-width:480px) {
+  .checkout-page .modal-box {
+    padding: 20px;
+    border-radius: 18px
+  }
+}
+.checkout-skin h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--ink);
+  letter-spacing: .2px
+}
+.checkout-skin .modal-close {
+  top: 24px;
+  right: 20px;
+  font-size: 19px;
+  line-height: 1
+}
+.checkout-skin .order-summary {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 16px 16px 6px;
+  margin: 16px 0 22px;
+  font-family: 'Plus Jakarta Sans', sans-serif
+}
+.checkout-skin .order-summary .sum-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13.5px;
+  padding: 5px 0;
+  color: var(--ink)
+}
+.checkout-skin .order-summary .sum-row span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+.checkout-skin .order-summary hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 8px 0
+}
+.checkout-skin .order-summary .sum-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 2px 0 12px;
+  color: var(--ink)
+}
+.checkout-skin .section-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11.5px;
+  color: var(--mute);
+  font-weight: 700;
+  margin: 4px 0 16px;
+  font-family: 'Plus Jakarta Sans', sans-serif
+}
+.checkout-skin .section-label svg {
+  width: 20px;
+  height: 20px;
+  color: var(--mute)
+}
+.checkout-skin .field label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12.5px;
+  color: var(--mute);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: .2px
+}
+.checkout-skin .field input {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ink);
+  padding: 13px 12px;
+  border-radius: 10px
+}
+.checkout-skin .field input::placeholder {
+  color: var(--mute);
+  opacity: .55
+}
+.checkout-skin .card-brand {
+  right: 12px
+}
+.checkout-skin .email-input-wrap {
+  position: relative
+}
+.checkout-skin .email-input-wrap input {
+  padding-right: 44px
+}
+.checkout-skin .email-input-wrap .icon {
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--mute);
+  pointer-events: none;
+  width: 19px;
+  height: 19px
+}
+.checkout-skin .fine-print {
+  font-family: Inter, -apple-system, sans-serif;
+  font-size: 10.5px;
+  color: var(--mute);
+  line-height: 1.5;
+  text-align: center;
+  margin: 4px 0 0
+}
+.checkout-skin .btn.gold {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14.5px;
+  font-weight: 700;
+  padding: 14px 18px;
+  border-radius: 11px;
+  letter-spacing: .2px
+}
+.checkout-skin #co-error {
+  font-family: Inter, -apple-system, sans-serif
+}
+.checkout-skin .auth-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 14px;
+  color: var(--gold)
+}
+.checkout-skin .auth-tabs {
+  display: flex;
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 3px;
+  margin: 16px 0 4px;
+  gap: 3px
+}
+.checkout-skin .auth-tabs button {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  padding: 9px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--mute);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  cursor: pointer;
+  transition: .15s
+}
+.checkout-skin .auth-tabs button.active {
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: 0 2px 6px rgba(36, 23, 38, .08)
+}
+.checkout-skin #login-error {
+  font-family: Inter, -apple-system, sans-serif;
+  font-size: 11px;
+  color: var(--sale);
+  min-height: 14px;
+  margin: 2px 0 4px
+}
+.checkout-skin .password-input-wrap {
+  position: relative
+}
+.checkout-skin .password-input-wrap input {
+  padding-right: 44px
+}
+.checkout-skin .password-toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 0;
+  padding: 6px;
+  display: grid;
+  place-items: center;
+  color: var(--mute);
+  cursor: pointer
+}
+.checkout-skin .password-toggle:hover {
+  color: var(--ink)
+}
+.checkout-skin .forgot-link {
+  display: block;
+  text-align: right;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11.5px;
+  color: var(--mute);
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: -4px 0 10px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px
+}
+.checkout-skin .forgot-link:hover {
+  color: var(--ink)
+}
+.checkout-skin .terms-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 12px 0 4px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11.5px;
+  color: var(--mute);
+  line-height: 1.5
+}
+.checkout-skin .terms-row input {
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  accent-color: var(--gold);
+  flex-shrink: 0
+}
+.checkout-skin .terms-row a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px
+}
+.checkout-skin .terms-row .terms-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer
+}
+@media(min-width:640px) {
+  .trust {
+    grid-template-columns: repeat(4, 1fr)
+  }
+  .cat-grid {
+    grid-template-columns: repeat(7, 1fr)
+  }
+}
+@media(max-width:760px) {
+  .product-hero, .cart-layout {
+    grid-template-columns: 1fr
+  }
+  .summary {
+    position: static
+  }
+  .footer-inner {
+    grid-template-columns: 1fr 1fr
+  }
+  .product-info h1 {
+    font-size: 29px
+  }
+}
+@media(max-width:480px) {
+  .grid {
+    gap: 10px
+  }
+  .media {
+    height: 155px
+  }
+  .shop-toolbar {
+    align-items: stretch;
+    flex-wrap: wrap
+  }
+  .toolbar-select {
+    width: 100%
+  }
+  .header-actions {
+    gap: 4px
+  }
+  .product-actions {
+    flex-direction: column
+  }
+  .footer-inner {
+    grid-template-columns: 1fr
+  }
+  .fab {
+    right: 12px;
+    bottom: 12px
+  }
+}
+</style>
+</head>
+<body>
+<div id="app">
+<div id="topbar">
+ <div id="marquee"><div class="track" id="marquee-track"></div></div>
+ <header>
+  <div class="header-row">
+   <button class="brand" data-action="home" aria-label="Maison Velours home"><span class="logo-mark" aria-hidden="true"></span><span>Maison Velours</span></button>
+   <div class="header-actions">
+    <button class="icon-btn" id="theme-btn" title="Change theme" aria-label="Change theme"></button>
+    <button id="auth-link" aria-label="Account"></button>
+    <button class="icon-btn" id="cart-icon" title="Shopping cart" aria-label="Shopping cart"></button>
+   </div>
+  </div>
+  <nav id="cats" aria-label="Product categories"></nav>
+ </header>
+</div>
+<main id="main"></main>
+<button class="fab" id="feedback-fab"><span id="fab-icon"></span> Help & feedback</button>
+<div id="toast" class="toast"></div>
+</div>
+
+<footer><div class="footer-inner"><div class="footer-col"><div class="footer-brand">Maison Velours</div><span>Discreet, considered shopping for adults.</span><span>18+ only.</span></div><div class="footer-col"><strong>Why shop with us</strong><span>Plain outer packaging</span><span>Clear pricing</span><span>Responsive support</span></div><div class="footer-col"><strong>Shopping confidence</strong><span>Product ratings & comments</span><span>Wishlist & saved items</span><span>Secure order relay</span></div></div></footer>
+
+<script>
+// @ts-nocheck
+document.addEventListener(
+  "DOMContentLoaded",
+  function ()
+  {
+    "use strict";
+    var FEEDBACK_FORM_URL = "https://example.com";
+    // TODO: replace with your real feedback form/survey URL
+    var CATEGORIES = [
+      "All",
+      "Bestsellers",
+      "Wellness",
+      "Couples",
+      "For Him",
+      "New In",
+      "Sale",
+      "Wishlist"
+    ];
+    var CATEGORY_ICONS = {
+      All: "grid",
+      Bestsellers: "spark",
+      Wellness: "leaf",
+      Couples: "heart",
+      "For Him": "user",
+      "New In": "spark",
+      Sale: "tag",
+      Wishlist: "heart"
+    };
+    var META = {
+      "magic-wand": [
+        "A powerful rechargeable wand designed for a simple, dependable routine.",
+        "High-performance \u2022 Rechargeable \u2022 Quiet-minded design"
+      ],
+      "rose-stimulator": [
+        "A compact rose-style stimulator with a focused profile for discreet, easy handling.",
+        "Compact \u2022 Rechargeable \u2022 Bestseller"
+      ],
+      "greedy-girl": [
+        "A playful rabbit-style design with dual stimulation for a more versatile experience.",
+        "Dual-action \u2022 Rechargeable \u2022 Wellness"
+      ],
+      "masterstroke": [
+        "A sleeve-style stroker made for a smooth, controlled experience and easy storage.",
+        "Flexible \u2022 Easy-clean \u2022 For Him"
+      ],
+      "jeweled-plug": [
+        "A beginner-friendly plug with a polished look and compact profile.",
+        "Beginner-friendly \u2022 Compact \u2022 New In"
+      ],
+      "mega-mighty": [
+        "A straightforward extender designed for fit, comfort and confidence.",
+        "For Him \u2022 Practical \u2022 Easy to store"
+      ],
+      "ripple": [
+        "A classic compact vibrator with a textured profile and easy everyday controls.",
+        "Classic \u2022 Compact \u2022 Wellness"
+      ],
+      "pure-wand": [
+        "A refined wand with a clean silhouette and dependable performance.",
+        "Bestseller \u2022 Rechargeable \u2022 Premium"
+      ],
+      "lubricant": [
+        "A water-based lubricant made to complement your routine and clean up easily.",
+        "Water-based \u2022 Essentials \u2022 Easy clean-up"
+      ],
+      "honey-pot": [
+        "A discreet stroker with a soft, approachable design for a comfortable routine.",
+        "For Him \u2022 Soft-touch feel \u2022 Discreet"
+      ],
+      "bondage-kit": [
+        "A curated couples kit bringing several playful accessories together in one box.",
+        "Couples \u2022 20-piece set \u2022 Giftable"
+      ],
+      "power-tower": [
+        "A pump set built around a simple, confidence-focused routine.",
+        "For Him \u2022 Adjustable routine \u2022 Essentials"
+      ],
+      "dragon-glow": [
+        "A fantasy-inspired novelty with a glow-in-the-dark finish and playful character.",
+        "Novelty \u2022 Glow-in-the-dark \u2022 New In"
+      ],
+      "toy-cleaner": [
+        "A simple cleaner for keeping compatible intimate accessories fresh between uses.",
+        "Essentials \u2022 Easy clean-up \u2022 Wellness"
+      ],
+      "ignite-plug": [
+        "A compact vibrating plug with a sleek silhouette and straightforward controls.",
+        "Vibrating \u2022 Rechargeable \u2022 New In"
+      ],
+      "wevibe-chorus": [
+        "A premium couples-focused wearable designed for shared control and connection.",
+        "Couples \u2022 App controlled \u2022 Premium"
+      ]
+    };
+    var PRODUCTS = [
+      {
+        id: "magic-wand",
+        name: "Rechargeable Wand",
+        category: "Bestsellers",
+        price: 96.99,
+        was: null,
+        tag: "Bestseller",
+        image: "assets/magic-wand.jpg"
+      },
+      {
+        id: "rose-stimulator",
+        name: "Rose Stimulator",
+        category: "Bestsellers",
+        price: 40.49,
+        was: 51.79,
+        tag: "Bestseller",
+        image: "assets/rose-stimulator.jpg"
+      },
+      {
+        id: "greedy-girl",
+        name: "Greedy Girl Rabbit",
+        category: "Wellness",
+        price: 68.79,
+        was: 86.59,
+        tag: "G-Spot",
+        image: "assets/greedy-girl.jpg"
+      },
+      {
+        id: "masterstroke",
+        name: "Masterstroke Stroker",
+        category: "For Him",
+        price: 30.25,
+        was: 38.99,
+        tag: "For Him",
+        image: "assets/masterstroke.jpg"
+      },
+      {
+        id: "jeweled-plug",
+        name: "Jewelled Plug",
+        category: "New In",
+        price: 19.89,
+        was: null,
+        tag: "Beginner",
+        image: "assets/jeweled-plug.jpg"
+      },
+      {
+        id: "mega-mighty",
+        name: "Mega Mighty Extender",
+        category: "For Him",
+        price: 23.59,
+        was: null,
+        tag: "For Him",
+        image: "assets/mega-mighty.jpg"
+      },
+      {
+        id: "ripple",
+        name: "Ripple Vibrator",
+        category: "Wellness",
+        price: 21.15,
+        was: 26.49,
+        tag: "Classic",
+        image: "assets/ripple.jpg"
+      },
+      {
+        id: "pure-wand",
+        name: "Pure Wand",
+        category: "Bestsellers",
+        price: 76.95,
+        was: null,
+        tag: "Bestseller",
+        image: "assets/pure-wand.jpg"
+      },
+      {
+        id: "lubricant",
+        name: "Water-Based Lubricant",
+        category: "Wellness",
+        price: 9.45,
+        was: null,
+        tag: "Essentials",
+        image: "assets/lubricant.jpg"
+      },
+      {
+        id: "honey-pot",
+        name: "Honey Pot Stroker",
+        category: "For Him",
+        price: 27.65,
+        was: null,
+        tag: "For Him",
+        image: "assets/honey-pot.jpg"
+      },
+      {
+        id: "bondage-kit",
+        name: "All You Need Kit",
+        category: "Couples",
+        price: 45.05,
+        was: 56.89,
+        tag: "20 Piece",
+        image: "assets/bondage-kit.jpg"
+      },
+      {
+        id: "power-tower",
+        name: "Power Tower Pump Set",
+        category: "For Him",
+        price: 26.75,
+        was: 33.95,
+        tag: "For Him",
+        image: "assets/power-tower.jpg"
+      },
+      {
+        id: "dragon-glow",
+        name: "Fantasy Dragon",
+        category: "New In",
+        price: 37.35,
+        was: null,
+        tag: "Glows in Dark",
+        image: "assets/dragon-glow.jpg"
+      },
+      {
+        id: "toy-cleaner",
+        name: "Fresh Toy Cleaner",
+        category: "Wellness",
+        price: 6.85,
+        was: null,
+        tag: "Essentials",
+        image: "assets/toy-cleaner.jpg"
+      },
+      {
+        id: "ignite-plug",
+        name: "Ignite Vibrating Plug",
+        category: "New In",
+        price: 33.55,
+        was: 42.99,
+        tag: "Vibrating",
+        image: "assets/ignite-plug.jpg"
+      },
+      {
+        id: "wevibe-chorus",
+        name: "Chorus Pro",
+        category: "Couples",
+        price: 84.19,
+        was: 122.29,
+        tag: "App Controlled",
+        image: "assets/wevibe-chorus.jpg"
+      }
+    ];
+    var cart = load(
+      "mv_cart",
+      {
+      }
+    ),
+    wishlist = load(
+      "mv_wishlist",
+      [
+      ]
+    ),
+    reviews = load(
+      "mv_reviews",
+      {
+      }
+    ),
+    account = load(
+      "mv_account_email",
+      null
+    );
+    var filter = "All",
+    query = "",
+    sort = "featured",
+    reviewRating = 5;
+    function load(
+      k,
+      f
+    )
+    {
+      try {
+        var x = localStorage.getItem(k);
+        return x ? JSON.parse(x)
+        : f;
+      }
+      catch (e)
+      {
+        return f;
+      }
+    }
+    function save(
+      k,
+      v
+    )
+    {
+      try {
+        localStorage.setItem(
+          k,
+          JSON.stringify(v)
+        );
+      }
+      catch (e)
+      {
+      }
+    }
+    function icon(
+      n,
+      cls
+    )
+    {
+      var p = {
+        heart: '<path d="M20.8 8.8c0 5.5-8.8 10.2-8.8 10.2S3.2 14.3 3.2 8.8A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.8Z"/>',
+        cart: '<path d="M3 4h2l2 11h10l2-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/>',
+        search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
+        sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+        moon: '<path d="M20 15.5A8 8 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"/>',
+        user: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/>',
+        tag: '<path d="M3 4v7l9 9 8-8-9-9H3Z"/><circle cx="7.5" cy="8.5" r="1"/>',
+        spark: '<path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2Z"/>',
+        leaf: '<path d="M20 4C10 4 4 8 4 15c0 3 2 5 5 5 7 0 11-6 11-16Z"/><path d="M4 20c2-5 6-8 12-11"/>',
+        grid: '<rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/>',
+        shield: '<path d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/>',
+        truck: '<path d="M3 6h11v10H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/>',
+        lock: '<rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
+        check: '<path d="m5 12 4 4L19 6"/>',
+        close: '<path d="m6 6 12 12M18 6 6 18"/>',
+        back: '<path d="m15 18-6-6 6-6"/>',
+        mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/>',
+        eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
+        eyeoff: '<path d="M3 3l18 18"/><path d="M10.6 5.2A10.6 10.6 0 0 1 12 5c6.4 0 10 7 10 7a17.6 17.6 0 0 1-3.4 4.3M6.6 6.6C4 8.3 2 12 2 12s3.6 7 10 7c1.4 0 2.6-.3 3.7-.8"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/>'
+      };
+      return '<svg class="icon ' + (cls || '')
+      + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + (
+        p[
+          n
+        ]
+        || p.spark
+      )
+      + '</svg>';
+    }
+    function esc(s)
+    {
+      return String(s)
+      .replace(
+        /[&<>"']/g,
+        function (c)
+        {
+          return (
+            {
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;"
+            }
+          )
+          [
+            c
+          ];
+        }
+      );
+    }
+    function money(n)
+    {
+      return "$" + Number(n)
+      .toFixed(2);
+    }
+    function find(id)
+    {
+      return PRODUCTS.find(
+        function (p)
+        {
+          return p.id === id;
+        }
+      );
+    }
+    function countCart()
+    {
+      return Object.values(cart)
+      .reduce(
+        function (
+          a,
+          b
+        )
+        {
+          return a + Number(b);
+        },
+        0
+      );
+    }
+    function avgRating(id)
+    {
+      var r = reviews[
+        id
+      ]
+      || [
+      ];
+      return r.length ? r.reduce(
+        function (
+          a,
+          x
+        )
+        {
+          return a + x.rating;
+        },
+        0
+      )
+      / r.length : 0;
+    }
+    function stars(n)
+    {
+      var out = "";
+      for (var i = 1; i <= 5; i++)
+      out += i <= Math.round(n)
+      ? "★" : "☆";
+      return out;
+    }
+    function go(hash)
+    {
+      location.hash = hash;
+      window.scrollTo(
+        0,
+        0
+      );
+      setTimeout(
+        function ()
+        {
+          window.scrollTo(
+            0,
+            0
+          );
+        },
+        0
+      );
+    }
+    function path()
+    {
+      return location.hash.replace(
+        /^#/,
+        ""
+      )
+      || "home";
+    }
+    function renderHeader()
+    {
+      document.querySelector(".logo-mark")
+      .innerHTML = icon(
+        "spark",
+        "sm"
+      );
+      document.getElementById("cart-icon")
+      .innerHTML = icon("cart")
+      + (
+        countCart()
+        ? '<span id="cart-count">' + countCart()
+        + "</span>" : '<span id="cart-count" hidden>0</span>'
+      );
+      var theme = document.documentElement.getAttribute("data-theme")
+      === "dark";
+      document.getElementById("theme-btn")
+      .innerHTML = icon(theme ? "sun" : "moon");
+      var auth = document.getElementById("auth-link");
+      auth.innerHTML = icon(
+        "user",
+        "sm"
+      )
+      + (
+        account ? '<span class="email">' + esc(account)
+        + "</span>" : "Sign in"
+      );
+      var nav = document.getElementById("cats");
+      nav.innerHTML = CATEGORIES.map(
+        function (c)
+        {
+          return '<button class="' + (filter === c ? "active" : "")
+          + '" data-action="cat" data-cat="' + esc(c)
+          + '">' + esc(c)
+          + '</button>';
+        }
+      )
+      .join("");
+    }
+    function renderMarquee()
+    {
+      document.getElementById("marquee-track")
+      .innerHTML = [
+        "18+ only",
+        "Discreet packaging",
+        "Plain billing descriptor",
+        "Secure checkout",
+        "Curated collection",
+        "18+ only",
+        "Discreet packaging",
+        "Plain billing descriptor",
+        "Secure checkout",
+        "Curated collection"
+      ]
+      .map(
+        function (x)
+        {
+          return "<span>" + icon(
+            "shield",
+            "sm"
+          )
+          + esc(x)
+          + "</span>";
+        }
+      )
+      .join("");
+    }
+    function home()
+    {
+      var cats = CATEGORIES.slice(1)
+      .map(
+        function (c)
+        {
+          return '<button class="cat-tile ' + (filter === c ? "active" : "")
+          + '" data-action="cat" data-cat="' + esc(c)
+          + '"><span class="cat-icon">' + icon(
+            CATEGORY_ICONS[
+              c
+            ],
+            "sm"
+          )
+          + '</span><span>' + esc(c)
+          + '</span></button>';
+        }
+      )
+      .join("");
+      return searchBar()
+      + '<section class="hero"><div class="container"><div class="eyebrow">Discreet · considered · curated</div><h1>Pleasure, considered.</h1><p>A refined collection chosen for thoughtful design, quiet presentation and a smoother buying experience from discovery to delivery.</p><button class="btn primary" data-action="shop">Shop the collection</button></div></section>' + '<div class="container"><section class="trust">' + trust(
+        "lock",
+        "Discreet checkout",
+        "Private, careful and simple"
+      )
+      + trust(
+        "truck",
+        "Plain delivery",
+        "Unbranded outer packaging"
+      )
+      + trust(
+        "shield",
+        "Quality focused",
+        "Curated products & essentials"
+      )
+      + trust(
+        "check",
+        "Buyer confidence",
+        "Clear pricing & support"
+      )
+      + '</section>' + '<section class="section"><div class="section-head"><h2>Shop by category</h2><span class="muted">Find your fit</span></div><div class="cat-grid">' + cats + '</div></section>' + '<section class="section" id="collection"><div class="section-head"><h2>The collection</h2><span class="muted" id="result-count"></span></div>' + toolbar()
+      + '<div class="grid" id="grid"></div></section></div>';
+    }
+    function trust(
+      i,
+      a,
+      b
+    )
+    {
+      return '<div class="trust-card"><div class="icon-wrap">' + icon(
+        i,
+        "sm"
+      )
+      + '</div><strong>' + a + '</strong><span>' + b + '</span></div>';
+    }
+    function searchBar()
+    {
+      return '<div class="container" style="padding-top:16px"><div class="search">' + icon("search")
+      + '<input id="search-input" value="' + esc(query)
+      + '" placeholder="Search products or categories…" autocomplete="off"><button id="search-clear" class="search-clear" type="button" aria-label="Clear search"' + (query ? "" : " hidden")
+      + '>' + icon(
+        "close",
+        "sm"
+      )
+      + '</button></div></div>';
+    }
+    function toolbar()
+    {
+      return '<div class="shop-toolbar"><select id="sort-select" class="toolbar-select"><option value="featured">Featured</option><option value="rating">Top rated</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option></select></div>' + '<div class="filter-panel">' + CATEGORIES.map(
+        function (c)
+        {
+          return '<button class="filter-chip ' + (filter === c ? "active" : "")
+          + '" data-action="cat" data-cat="' + esc(c)
+          + '">' + esc(c)
+          + '</button>';
+        }
+      )
+      .join("")
+      + '</div>';
+    }
+    function filtered()
+    {
+      var arr = PRODUCTS.filter(
+        function (p)
+        {
+          var cat = filter === "All" || filter === "Wishlist" || p.category === filter || (filter === "Sale" && p.was);
+          if (filter === "Wishlist")
+          cat = wishlist.includes(p.id);
+          var q = query.toLowerCase();
+          return cat && (
+            !q || (p.name + " " + p.category + " " + p.tag)
+            .toLowerCase()
+            .includes(q)
+          );
+        }
+      );
+      if (sort === "rating")
+      arr.sort(
+        function (
+          a,
+          b
+        )
+        {
+          return avgRating(b.id)
+          - avgRating(a.id);
+        }
+      );
+      if (sort === "price-low")
+      arr.sort(
+        function (
+          a,
+          b
+        )
+        {
+          return a.price - b.price;
+        }
+      );
+      if (sort === "price-high")
+      arr.sort(
+        function (
+          a,
+          b
+        )
+        {
+          return b.price - a.price;
+        }
+      );
+      return arr;
+    }
+    function renderGrid()
+    {
+      var g = document.getElementById("grid");
+      if (!g)
+      return;
+      var arr = filtered();
+      document.getElementById("result-count")
+      .textContent = arr.length + " item" + (arr.length === 1 ? "" : "s");
+      g.innerHTML = arr.length ? arr.map(card)
+      .join("")
+      : '<div class="empty" style="grid-column:1/-1">' + icon(
+        "search",
+        "lg"
+      )
+      + '<p>No products match those filters.</p><button class="btn ghost" data-action="clear">Clear filters</button></div>';
+      var sel = document.getElementById("sort-select");
+      if (sel)
+      sel.value = sort;
+    }
+    function card(p)
+    {
+      var avg = avgRating(p.id);
+      return `<article class="card"><div class="media"><img src="${p.image}" alt="${esc(p.name)}" loading="lazy"><span class="badge">${esc(p.tag)}</span><button class="wish ${wishlist.includes(p.id) ? "active" : ""}" data-action="wish" data-id="${p.id}" aria-label="Wishlist">${icon("heart", "sm")}</button>${p.was ? '<span class="discount">SALE</span>' : ""}</div><div class="card-body"><h3>${esc(p.name)}</h3><div class="cat">${esc(p.category)}</div><div class="rating-line"><span class="stars">${stars(avg)}</span><span class="muted">(${(reviews[p.id] || []).length || "new"})</span></div><div class="price-row"><div><span class="price ${p.was ? "sale" : ""}">${money(p.price)}</span>${p.was ? `<span class="was">${money(p.was)}</span>` : ""}</div></div><div class="card-actions"><button class="btn ghost" data-action="product" data-id="${p.id}">View details</button><button class="btn gold" data-action="add" data-id="${p.id}">Add to cart</button></div></div></article>`;
+    }
+    function productPage(id)
+    {
+      var p = find(id);
+      if (!p)
+      {
+        go("home");
+        return "";
+      }
+      var avg = avgRating(id),
+      rr = reviews[
+        id
+      ]
+      || [
+      ],
+      recs = PRODUCTS.filter(
+        function (x)
+        {
+          return x.id !== id && x.category === p.category;
+        }
+      )
+      .slice(
+        0,
+        4
+      );
+      return '<section class="product-page"><div class="container"><button class="back" data-action="back">' + icon(
+        "back",
+        "sm"
+      )
+      + ' Back to collection</button><div class="product-hero"><div class="product-image"><img src="' + p.image + '" alt="' + esc(p.name)
+      + '"></div><div class="product-info"><div class="eyebrow">' + esc(p.category)
+      + '</div><h1>' + esc(p.name)
+      + '</h1><div class="big-rating"><span class="stars">' + stars(avg)
+      + '</span><strong>' + avg.toFixed(1)
+      + '</strong><span class="muted">' + rr.length + ' review' + (rr.length === 1 ? "" : "s")
+      + '</span></div><p class="lead">' + esc(
+        META[
+          id
+        ]
+        [
+          0
+        ]
+      )
+      + '</p><div class="meta-pills">' + META[
+        id
+      ]
+      [
+        1
+      ]
+      .split(" • ")
+      .map(
+        function (x)
+        {
+          return '<span class="pill">' + esc(x)
+          + '</span>';
+        }
+      )
+      .join("")
+      + '</div><div class="product-price">' + money(p.price)
+      + (
+        p.was ? '<span class="was"> ' + money(p.was)
+        + '</span>' : ""
+      )
+      + '</div><div class="product-actions"><button class="btn gold" data-action="add" data-id="' + id + '">Add to cart</button><button class="btn ghost" data-action="wish" data-id="' + id + '">' + icon(
+        "heart",
+        "sm"
+      )
+      + ' ' + (
+        wishlist.includes(id)
+        ? "Saved" : "Save for later"
+      )
+      + '</button></div><div class="assurance"><div>' + icon(
+        "lock",
+        "sm"
+      )
+      + ' Secure checkout</div><div>' + icon(
+        "truck",
+        "sm"
+      )
+      + ' Plain packaging</div><div>' + icon(
+        "shield",
+        "sm"
+      )
+      + ' Discreet billing</div><div>' + icon(
+        "check",
+        "sm"
+      )
+      + ' Support available</div></div></div></div>' + '<div class="detail-card"><h2>About this product</h2><p>' + esc(
+        META[
+          id
+        ]
+        [
+          0
+        ]
+      )
+      + ' Maison Velours keeps product presentation discreet and focuses on clear information, transparent pricing and a straightforward customer journey.</p></div>' + '<div class="detail-card" id="reviews"><h2>Ratings & comments</h2><div class="review-form"><input id="review-name" placeholder="Your name or initials"><div class="review-stars" id="review-stars">' + [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+      .map(
+        function (n)
+        {
+          return '<button data-action="rate" data-rating="' + n + '" class="' + (n <= reviewRating ? "active" : "")
+          + '" aria-label="' + n + ' stars">★</button>';
+        }
+      )
+      .join("")
+      + '</div><textarea id="review-text" rows="4" placeholder="Share your experience…"></textarea><button class="btn primary" data-action="review" data-id="' + id + '">Post review</button></div><div class="review-list">' + (
+        rr.length ? rr.slice()
+        .reverse()
+        .map(
+          function (r)
+          {
+            return '<div class="review"><div class="review-head"><strong>' + esc(r.name || "Verified customer")
+            + '</strong><span class="stars">' + stars(r.rating)
+            + '</span></div><p>' + esc(r.text)
+            + '</p></div>';
+          }
+        )
+        .join("")
+        : '<p class="muted">Be the first to leave a review.</p>'
+      )
+      + '</div></div>' + (
+        recs.length ? '<div class="section"><div class="section-head"><h2>You may also like</h2></div><div class="grid">' + recs.map(card)
+        .join("")
+        + '</div></div>' : ""
+      )
+      + '</div></section>';
+    }
+    function cartPage()
+    {
+      var ids = Object.keys(cart)
+      .filter(
+        function (id)
+        {
+          return find(id)
+          && cart[
+            id
+          ]
+          > 0;
+        }
+      ),
+      subtotal = ids.reduce(
+        function (
+          s,
+          id
+        )
+        {
+          return s + find(id)
+          .price * cart[
+            id
+          ];
+        },
+        0
+      );
+      if (!ids.length)
+      return '<section class="cart-page"><div class="container"><button class="back" data-action="home">' + icon(
+        "back",
+        "sm"
+      )
+      + ' Continue shopping</button><div class="empty">' + icon(
+        "cart",
+        "lg"
+      )
+      + '<h2>Your cart is empty</h2><p>Add something you love and it will appear here.</p><button class="btn primary" data-action="shop">Browse collection</button></div></div></section>';
+      return '<section class="cart-page"><div class="container"><button class="back" data-action="shop">' + icon(
+        "back",
+        "sm"
+      )
+      + ' Continue shopping</button><div class="section-head"><h1>Shopping bag</h1><span class="muted">' + countCart()
+      + ' item' + (countCart() === 1 ? "" : "s")
+      + '</span></div><div class="cart-layout"><div class="cart-items">' + ids.map(cartRow)
+      .join("")
+      + '</div><aside class="summary"><h2>Order summary</h2><div class="sumline"><span>Subtotal</span><b>' + money(subtotal)
+      + '</b></div><div class="sumline"><span>Delivery</span><span>Calculated after checkout</span></div><div class="sumline total"><span>Total</span><span>' + money(subtotal)
+      + '</span></div><div class="info-strip">' + icon(
+        "lock",
+        "sm"
+      )
+      + '<div><strong>Discreet by design</strong><span>Plain outer packaging and a clear, private checkout experience.</span></div></div><button class="btn gold" data-action="checkout">Proceed to checkout</button></aside></div></div></section>';
+    }
+    function cartRow(id)
+    {
+      var p = find(id),
+      q = cart[
+        id
+      ];
+      return '<div class="cart-row"><img src="' + p.image + '" alt="' + esc(p.name)
+      + '"><div><h3>' + esc(p.name)
+      + '</h3><p>' + money(p.price)
+      + ' · ' + esc(p.category)
+      + '</p><div class="qty"><button data-action="qty" data-id="' + id + '" data-delta="-1">−</button><strong>' + q + '</strong><button data-action="qty" data-id="' + id + '" data-delta="1">+</button><button class="btn ghost" style="padding:5px 8px" data-action="remove" data-id="' + id + '">Remove</button></div></div><strong>' + money(p.price * q)
+      + '</strong></div>';
+    }
+    function syncTopbarHeight()
+    {
+      var tb = document.getElementById("topbar"),
+      main = document.getElementById("main");
+      if (tb && main)
+      main.style.paddingTop = tb.offsetHeight + "px";
+    }
+    function render()
+    {
+      renderHeader();
+      renderMarquee();
+      syncTopbarHeight();
+      var p = path(),
+      main = document.getElementById("main");
+      if (p !== "home")
+      window.scrollTo(
+        0,
+        0
+      );
+      if (p === "cart")
+      main.innerHTML = cartPage();
+      else if (p === "checkout")
+      {
+        main.innerHTML = checkoutPage();
+        bindCheckoutPage();
+      }
+      else if (p === "order-confirmation")
+      main.innerHTML = orderConfirmationPage();
+      else if (p.indexOf("product/") === 0)
+      main.innerHTML = productPage(
+        p.split("/")
+        [
+          1
+        ]
+      );
+      else main.innerHTML = home();
+      if (p === "home")
+      {
+        renderGrid();
+        bindSearch();
+      }
+    }
+    function bindSearch()
+    {
+      var input = document.getElementById("search-input"),
+      clearBtn = document.getElementById("search-clear");
+      if (input)
+      input.addEventListener(
+        "input",
+        function ()
+        {
+          query = this.value;
+          if (clearBtn)
+          clearBtn.hidden = !query;
+          renderGrid();
+        }
+      );
+      if (clearBtn)
+      clearBtn.addEventListener(
+        "click",
+        function ()
+        {
+          query = "";
+          if (input)
+          {
+            input.value = "";
+            input.focus();
+          }
+          clearBtn.hidden = true;
+          renderGrid();
+        }
+      );
+      var sel = document.getElementById("sort-select");
+      if (sel)
+      sel.addEventListener(
+        "change",
+        function ()
+        {
+          sort = this.value;
+          renderGrid();
+        }
+      );
+    }
+    function add(id)
+    {
+      cart[
+        id
+      ]
+      = (
+        cart[
+          id
+        ]
+        || 0
+      )
+      + 1;
+      save(
+        "mv_cart",
+        cart
+      );
+      renderHeader();
+      if (path() === "cart")
+      render();
+      toast("Added to your cart");
+    }
+    function changeQty(
+      id,
+      d
+    )
+    {
+      cart[
+        id
+      ]
+      = (
+        cart[
+          id
+        ]
+        || 0
+      )
+      + d;
+      if (
+        cart[
+          id
+        ]
+        <= 0
+      )
+      delete cart[
+        id
+      ];
+      save(
+        "mv_cart",
+        cart
+      );
+      render();
+    }
+    function wish(id)
+    {
+      var i = wishlist.indexOf(id);
+      if (i >= 0)
+      wishlist.splice(
+        i,
+        1
+      );
+      else wishlist.push(id);
+      save(
+        "mv_wishlist",
+        wishlist
+      );
+      render();
+      toast(
+        i >= 0 ? "Removed from wishlist" : "Saved to wishlist"
+      );
+    }
+    function toast(t)
+    {
+      var e = document.getElementById("toast");
+      e.textContent = t;
+      e.classList.add("show");
+      setTimeout(
+        function ()
+        {
+          e.classList.remove("show");
+        },
+        1800
+      );
+    }
+    function openLogin()
+    {
+      var mode = "signin";
+      function view()
+      {
+        if (account)
+        {
+          return '<div class="auth-avatar" style="font-family:Georgia,serif;font-size:20px;font-weight:700">' + esc(account.charAt(0).toUpperCase())
+          + '</div><h2 style="text-align:center">Your account</h2><p style="text-align:center">Signed in as <strong>' + esc(account)
+          + '</strong></p><button class="btn primary" id="signout" style="width:100%;margin-top:6px">Sign out</button>';
+        }
+        var isSignup = mode === "signup";
+        return '<div class="auth-avatar">' + icon(
+          "mail",
+          "sm"
+        )
+        + '</div><h2 style="text-align:center">' + (
+          isSignup ? "Create your account" : "Welcome back"
+        )
+        + '</h2><p style="text-align:center">' + (
+          isSignup ? "Sign up with your email to save your cart and orders." : "Sign in to keep your experience connected across visits."
+        )
+        + '</p><div class="auth-tabs"><button type="button" data-mode="signin" class="' + (!isSignup ? "active" : "")
+        + '">Sign in</button><button type="button" data-mode="signup" class="' + (isSignup ? "active" : "")
+        + '">Create account</button></div><div class="field"><label for="login-email">Email address</label><div class="email-input-wrap"><input id="login-email" type="email" autocomplete="email" placeholder="you@example.com">' + icon("mail")
+        + '</div></div><div class="field"><label for="login-password">Password</label><div class="password-input-wrap"><input id="login-password" type="password" autocomplete="' + (
+          isSignup ? "new-password" : "current-password"
+        )
+        + '" placeholder="••••••••"><button type="button" class="password-toggle" data-target="login-password" aria-label="Show password">' + icon("eye")
+        + '</button></div></div>' + (
+          isSignup ? '<div class="field"><label for="login-password2">Confirm password</label><div class="password-input-wrap"><input id="login-password2" type="password" autocomplete="new-password" placeholder="••••••••"><button type="button" class="password-toggle" data-target="login-password2" aria-label="Show password">' + icon("eye")
+          + '</button></div></div>' : '<button type="button" class="forgot-link" id="forgot-link">Forgot password?</button>'
+        )
+        + '<p id="login-error"></p>' + (
+          isSignup ? '<label class="terms-row"><input type="checkbox" id="login-terms"><span>I agree to the <span class="terms-link">Terms of Service</span> and <span class="terms-link">Privacy Policy</span></span></label>' : ''
+        )
+        + '<button class="btn gold" id="login-submit" style="width:100%;margin-top:' + (isSignup ? "10px" : "0")
+        + '">' + (isSignup ? "Create account" : "Sign in")
+        + '</button><p class="fine-print">' + (
+          isSignup ? "Your password is stored securely and never shared." : "We&rsquo;ll keep you signed in on this device."
+        )
+        + '</p>';
+      }
+      var m = document.createElement("div");
+      m.className = "modal checkout-skin";
+      m.innerHTML = '<div class="modal-box"><button class="modal-close" data-close>' + icon("close")
+      + '</button><div id="auth-body">' + view()
+      + '</div></div>';
+      document.body.appendChild(m);
+      m.addEventListener(
+        "click",
+        function (e)
+        {
+          if (
+            e.target === m || e.target.closest("[data-close]")
+          )
+          m.remove();
+        }
+      );
+      function wire()
+      {
+        if (account)
+        {
+          document.getElementById("signout")
+          .onclick = function ()
+          {
+            account = null;
+            save(
+              "mv_account_email",
+              null
+            );
+            m.remove();
+            render();
+          };
+          return;
+        }
+        var tabs = m.querySelectorAll(".auth-tabs button");
+        tabs.forEach(
+          function (b)
+          {
+            b.onclick = function ()
+            {
+              mode = b.getAttribute("data-mode");
+              document.getElementById("auth-body")
+              .innerHTML = view();
+              wire();
+            };
+          }
+        );
+        m.querySelectorAll(".password-toggle")
+        .forEach(
+          function (t)
+          {
+            t.onclick = function ()
+            {
+              var inp = document.getElementById(t.getAttribute("data-target"));
+              var show = inp.type === "password";
+              inp.type = show ? "text" : "password";
+              t.innerHTML = icon(show ? "eyeoff" : "eye");
+              t.setAttribute(
+                "aria-label",
+                show ? "Hide password" : "Show password"
+              );
+            };
+          }
+        );
+        var forgot = document.getElementById("forgot-link");
+        if (forgot)
+        forgot.onclick = function ()
+        {
+          var v = document.getElementById("login-email")
+          .value.trim();
+          toast(
+            v && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+            ? "Reset link sent if that email has an account" : "Enter your email above first"
+          );
+        };
+        var btn = document.getElementById("login-submit"),
+        err = document.getElementById("login-error");
+        btn.onclick = function ()
+        {
+          var v = document.getElementById("login-email")
+          .value.trim();
+          var pw = document.getElementById("login-password")
+          .value;
+          if (
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+          )
+          {
+            err.textContent = "Enter a valid email address";
+            return;
+          }
+          if (pw.length < 8)
+          {
+            err.textContent = "Password must be at least 8 characters";
+            return;
+          }
+          if (mode === "signup")
+          {
+            var pw2 = document.getElementById("login-password2")
+            .value;
+            if (pw !== pw2)
+            {
+              err.textContent = "Passwords do not match";
+              return;
+            }
+            if (
+              !document.getElementById("login-terms")
+              .checked
+            )
+            {
+              err.textContent = "Please accept the Terms to continue";
+              return;
+            }
+          }
+          err.textContent = "";
+          btn.disabled = true;
+          btn.textContent = mode === "signup" ? "Creating account…" : "Signing in…";
+          setTimeout(
+            function ()
+            {
+              account = v;
+              save(
+                "mv_account_email",
+                v
+              );
+              m.remove();
+              render();
+              toast(
+                mode === "signup" ? "Account created" : "Signed in"
+              );
+            },
+            500
+          );
+        };
+      }
+      wire();
+    }
+    function feedback()
+    {
+      var m = document.createElement("div");
+      m.className = "modal";
+      m.innerHTML = '<div class="modal-box"><button class="modal-close" data-close>' + icon("close")
+      + '</button><h2>How can we help?</h2><p>Tell us about a bug, suggestion or your shopping experience. Your feedback helps us improve.</p><div class="field"><label for="feedback-text">Feedback</label><textarea id="feedback-text" rows="7" placeholder="Tell us what you would like us to improve…"></textarea></div><button class="btn primary" id="feedback-submit">' + icon(
+        "send",
+        "sm"
+      )
+      + ' Send feedback</button></div>';
+      document.body.appendChild(m);
+      document.body.style.overflow = "hidden";
+      m.addEventListener(
+        "click",
+        function (e)
+        {
+          if (
+            e.target === m || e.target.closest("[data-close]")
+          )
+          {
+            m.remove();
+            document.body.style.overflow = "";
+          }
+        }
+      );
+      document.getElementById("feedback-submit")
+      .onclick = function ()
+      {
+        var t = document.getElementById("feedback-text")
+        .value.trim();
+        if (!t)
+        return toast("Please enter your feedback");
+        save(
+          "mv_feedback",
+          load(
+            "mv_feedback",
+            [
+            ]
+          )
+          .concat(
+            [
+              {
+                text: t,
+                date: new Date()
+                .toISOString()
+              }
+            ]
+          )
+        );
+        window.location.href = FEEDBACK_FORM_URL;
+      };
+    }
+    function luhn(value)
+    {
+      var digits = value.replace(
+        /\D/g,
+        ""
+      ),
+      sum = 0,
+      alt = false;
+      for (var i = digits.length - 1; i >= 0; i--)
+      {
+        var n = Number(
+          digits[
+            i
+          ]
+        );
+        if (alt)
+        {
+          n *= 2;
+          if (n > 9)
+          n -= 9;
+        }
+        sum += n;
+        alt = !alt;
+      }
+      return digits.length >= 13 && digits.length <= 19 && sum % 10 === 0;
+    }
+    function detectCardBrand(value)
+    {
+      var d = value.replace(
+        /\D/g,
+        ""
+      );
+      if (
+        /^3[47]\d{0,13}$/.test(d)
+      )
+      return {
+        name: "American Express",
+        pattern: /^3[47]\d{13}$/,
+        lengths: [
+          15
+        ]
+      };
+      if (
+        /^36\d{0,12}$/.test(d)
+      )
+      return {
+        name: "Diners Club",
+        pattern: /^36\d{12}$/,
+        lengths: [
+          14
+        ]
+      };
+      if (
+        /^30[0-5]\d{0,11}$/.test(d)
+      )
+      return {
+        name: "Diners Club",
+        pattern: /^30[0-5]\d{11}$/,
+        lengths: [
+          14
+        ]
+      };
+      if (
+        /^4\d{0,15}$/.test(d)
+      )
+      return {
+        name: "Visa",
+        pattern: /^4\d{15}$/,
+        lengths: [
+          16
+        ]
+      };
+      if (
+        /^(?:5[1-5]|2(?:2[2-9]|[3-6]\d|7[01]|720))\d{0,17}$/.test(d)
+      )
+      return {
+        name: "Mastercard",
+        pattern: /^(?:5[1-5]\d{14}|2(?:2[2-9]|[3-6]\d|7[01])\d{12}|2720\d{12})$/,
+        lengths: [
+          16
+        ]
+      };
+      if (
+        /^(?:6011|65|64[4-9])\d{0,12}$/.test(d)
+      )
+      return {
+        name: "Discover",
+        pattern: /^(?:6011|65|64[4-9])\d{10,12}$/,
+        lengths: [
+          16
+        ]
+      };
+      if (
+        /^35\d{0,14}$/.test(d)
+      )
+      return {
+        name: "JCB",
+        pattern: /^35\d{14}$/,
+        lengths: [
+          16
+        ]
+      };
+      if (
+        /^62\d{0,17}$/.test(d)
+      )
+      return {
+        name: "UnionPay",
+        pattern: /^62\d{14,17}$/,
+        lengths: [
+          16,
+          17,
+          18,
+          19
+        ]
+      };
+      return null;
+    }
+    function cardBrandLogo(name)
+    {
+      if (name === "Visa")
+      return '<svg viewBox="0 0 70 38" role="img" aria-label="Visa"><rect x="1" y="1" width="68" height="36" rx="6" fill="var(--card)" stroke="var(--line)"/><text x="35" y="25" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-style="italic" font-weight="900" fill="#1a1f71">VISA</text></svg>';
+      if (name === "Mastercard")
+      return '<svg viewBox="0 0 70 38" role="img" aria-label="Mastercard"><rect x="1" y="1" width="68" height="36" rx="6" fill="var(--card)" stroke="var(--line)"/><circle cx="30" cy="19" r="10" fill="#eb001b"/><circle cx="40" cy="19" r="10" fill="#f79e1b" opacity=".95"/><text x="35" y="33" text-anchor="middle" font-family="Arial,sans-serif" font-size="6.5" font-weight="700" fill="var(--ink)">mastercard</text></svg>';
+      if (name === "American Express")
+      return '<svg viewBox="0 0 70 38" role="img" aria-label="American Express"><rect x="1" y="1" width="68" height="36" rx="6" fill="#1477c9" stroke="var(--line)"/><text x="35" y="16" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" font-weight="800" fill="#fff">AMERICAN</text><text x="35" y="25" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" font-weight="800" fill="#fff">EXPRESS</text></svg>';
+      if (name === "Discover")
+      return '<svg viewBox="0 0 70 38" role="img" aria-label="Discover"><rect x="1" y="1" width="68" height="36" rx="6" fill="var(--card)" stroke="var(--line)"/><text x="35" y="24" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="800" fill="#e76f00">DISCOVER</text></svg>';
+      if (name === "JCB")
+      return '<svg viewBox="0 0 70 38" role="img" aria-label="JCB"><rect x="1" y="1" width="68" height="36" rx="6" fill="var(--card)" stroke="var(--line)"/><text x="35" y="24" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="900" fill="#0875bd">JCB</text></svg>';
+      if (name === "Diners Club")
+      return '<svg viewBox="0 0 70 38" role="img" aria-label="Diners Club"><rect x="1" y="1" width="68" height="36" rx="6" fill="var(--card)" stroke="var(--line)"/><circle cx="35" cy="19" r="11" fill="none" stroke="#0079be" stroke-width="2"/><path d="M35 10v18M27 19h16" stroke="#0079be" stroke-width="1.6"/></svg>';
+      if (name === "UnionPay")
+      return '<svg viewBox="0 0 70 38" role="img" aria-label="UnionPay"><rect x="1" y="1" width="68" height="36" rx="6" fill="var(--card)" stroke="var(--line)"/><text x="35" y="24" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="800" fill="#0b5cab">UnionPay</text></svg>';
+      return "";
+    }
+    function validateCardNumber(value)
+    {
+      var d = value.replace(
+        /\D/g,
+        ""
+      );
+      var brand = detectCardBrand(d);
+      if (!brand)
+      return {
+        valid: luhn(d),
+        brand: null,
+        complete: d.length >= 13
+      };
+      var lengthOK = brand.lengths.indexOf(d.length)
+      >= 0;
+      return {
+        valid: lengthOK && brand.pattern.test(d)
+        && luhn(d),
+        brand: brand.name,
+        complete: lengthOK
+      };
+    }
+    function formatCardNumber(
+      digits,
+      brandName
+    )
+    {
+      if (brandName === "American Express")
+      return [
+        digits.slice(
+          0,
+          4
+        ),
+        digits.slice(
+          4,
+          10
+        ),
+        digits.slice(
+          10,
+          15
+        )
+      ]
+      .filter(Boolean)
+      .join(" ");
+      if (
+        brandName === "Diners Club" && /^36|^30[0-5]/.test(digits)
+      )
+      return [
+        digits.slice(
+          0,
+          4
+        ),
+        digits.slice(
+          4,
+          10
+        ),
+        digits.slice(
+          10,
+          14
+        )
+      ]
+      .filter(Boolean)
+      .join(" ");
+      if (
+        brandName === "UnionPay" && digits.length > 16
+      )
+      return [
+        digits.slice(
+          0,
+          6
+        ),
+        digits.slice(
+          6,
+          19
+        )
+      ]
+      .filter(Boolean)
+      .join(" ");
+      return digits.replace(
+        /(.{4})/g,
+        "$1 "
+      )
+      .trim();
+    }
+    function maxCardLength(d)
+    {
+      if (
+        /^3[47]/.test(d)
+      )
+      return 15;
+      if (
+        /^36|^30[0-5]/.test(d)
+      )
+      return 14;
+      if (/^4/.test(d))
+      return 16;
+      if (
+        /^(?:5[1-5]|2(?:2[2-9]|[3-6]\d|7[01]|720))/.test(d)
+      )
+      return 16;
+      if (
+        /^(?:6011|65|64[4-9])/.test(d)
+      )
+      return 16;
+      if (/^35/.test(d))
+      return 16;
+      if (/^62/.test(d))
+      return 19;
+      return 19;
+    }
+    var CHECKOUT_DRAFT_KEY = "mv_checkout_draft";
+    var LAST_ORDER_EMAIL_KEY = "mv_last_order_email";
+    function saveCheckoutDraft(d)
+    {
+      save(
+        CHECKOUT_DRAFT_KEY,
+        d
+      );
+    }
+    function loadCheckoutDraft()
+    {
+      return load(
+        CHECKOUT_DRAFT_KEY,
+        {
+        }
+      );
+    }
+    function clearCheckoutDraft()
+    {
+      try {
+        localStorage.removeItem(CHECKOUT_DRAFT_KEY);
+      }
+      catch (e)
+      {
+      }
+    }
+    function cvvLength(brandName)
+    {
+      return brandName === "American Express" ? 4 : 3;
+    }
+    function validExpiry(value)
+    {
+      var m = value.match(
+        /^(0[1-9]|1[0-2])\/(\d{2})$/
+      );
+      if (!m)
+      return false;
+      var now = new Date(),
+      year = 2000 + Number(
+        m[
+          2
+        ]
+      ),
+      month = Number(
+        m[
+          1
+        ]
+      );
+      return year > now.getFullYear()
+      || (
+        year === now.getFullYear()
+        && month >= now.getMonth()
+        + 1
+      );
+    }
+    function checkoutPage()
+    {
+      var ids = Object.keys(cart)
+      .filter(
+        function (id)
+        {
+          return find(id)
+          && cart[
+            id
+          ]
+          > 0;
+        }
+      );
+      if (!ids.length)
+      return '<section class="page checkout-page"><div class="container"><button class="back" data-action="home">' + icon(
+        "back",
+        "sm"
+      )
+      + ' Continue shopping</button><div class="empty">' + icon(
+        "cart",
+        "lg"
+      )
+      + '<h2>Your cart is empty</h2><p>Add something you love and it will appear here.</p><button class="btn primary" data-action="shop">Browse collection</button></div></div></section>';
+      var total = ids.reduce(
+        function (
+          s,
+          id
+        )
+        {
+          return s + find(id)
+          .price * cart[
+            id
+          ];
+        },
+        0
+      );
+      var summaryRows = ids.map(
+        function (id)
+        {
+          var p = find(id);
+          return '<div class="sum-row"><span>' + esc(p.name)
+          + ' × ' + cart[
+            id
+          ]
+          + '</span><span>' + money(
+            p.price * cart[
+              id
+            ]
+          )
+          + '</span></div>';
+        }
+      )
+      .join("");
+      return '<section class="page checkout-page"><div class="container"><button class="back" data-action="back">' + icon(
+        "back",
+        "sm"
+      )
+      + ' Back to bag</button><div class="checkout-skin"><div class="modal-box"><h2>Checkout</h2><div class="order-summary">' + summaryRows + '<hr><div class="sum-total"><span>Total</span><span>' + money(total)
+      + '</span></div></div><div class="section-label">' + icon("mail")
+      + '<span>Contact &amp; shipping</span></div><div class="field"><label for="co-name">Full name</label><input id="co-name" autocomplete="name" placeholder="Jordan Avery"></div><div class="field"><label for="co-email">Email address</label><div class="email-input-wrap"><input id="co-email" type="email" autocomplete="email" placeholder="jordan@email.com">' + icon("mail")
+      + '</div></div><div class="field card-field"><label for="co-card">Card number</label><div class="card-input-wrap"><input id="co-card" inputmode="numeric" autocomplete="cc-number" maxlength="23" placeholder="1234 5678 9012 3456" aria-describedby="co-card-status"><span id="co-card-brand" class="card-brand is-hidden" aria-hidden="true"></span></div><div id="co-card-status" class="card-status" aria-live="polite"></div></div><div class="payment-grid"><div class="field"><label for="co-expiry">Expiry Date (MM/YY)</label><input id="co-expiry" inputmode="numeric" autocomplete="cc-exp" maxlength="5" placeholder="MM/YY"></div><div class="field"><label for="co-cvv">CVV</label><input id="co-cvv" type="password" inputmode="numeric" autocomplete="cc-csc" maxlength="4" placeholder="0000" aria-describedby="co-cvv-status"><div id="co-cvv-status" class="card-status" aria-live="polite"></div></div></div><div class="field"><label for="co-zip">ZIP / postal code</label><input id="co-zip" autocomplete="postal-code" placeholder="10001"></div><div class="field"><label for="co-address">Shipping address</label><input id="co-address" autocomplete="street-address" placeholder="123 Main St, Apt 4B, New York, NY"></div><button class="btn gold" id="co-submit">Place order</button><p id="co-error" style="color:var(--sale)"></p><p class="fine-print">Your payment information is kept secure and is not stored on this device.</p></div></div></div></section>';
+    }
+    var TRACK_ORDER_URL = "https://example.com";
+    // TODO: replace with your tracking redirect URL
+    function orderConfirmationPage()
+    {
+      var em = load(
+        LAST_ORDER_EMAIL_KEY,
+        ""
+      );
+      var trackBlock = "";
+      if (em)
+      {
+        trackBlock = '<p style="margin-top:10px">To track your order, log in to your email (<strong>' + em.replace(
+          /</g,
+          "&lt;"
+        )
+        + '</strong>).</p><a class="btn ghost" href="' + TRACK_ORDER_URL + '" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px">Open my email</a>';
+      }
+      return '<section class="page checkout-page"><div class="container"><div class="checkout-skin"><div class="modal-box" style="text-align:center"><div style="width:52px;height:52px;border-radius:50%;background:var(--surface);display:grid;place-items:center;margin:0 auto 15px;color:var(--gold)">' + icon(
+        "check",
+        "lg"
+      )
+      + '</div><h2>Order received</h2><p>Your order request has been received. We’ll follow up using the details you provided.</p>' + trackBlock + '<button class="btn primary" data-action="home" style="margin-top:16px">Continue shopping</button></div></div></div></section>';
+    }
+    function bindCheckoutPage()
+    {
+      var ids = Object.keys(cart)
+      .filter(
+        function (id)
+        {
+          return find(id)
+          && cart[
+            id
+          ]
+          > 0;
+        }
+      );
+      if (!ids.length)
+      return;
+      var total = ids.reduce(
+        function (
+          s,
+          id
+        )
+        {
+          return s + find(id)
+          .price * cart[
+            id
+          ];
+        },
+        0
+      );
+      var draft = loadCheckoutDraft();
+      var nameInput = document.getElementById("co-name"),
+      emailInput = document.getElementById("co-email"),
+      zipInput = document.getElementById("co-zip"),
+      addressInput = document.getElementById("co-address");
+      if (draft.name)
+      nameInput.value = draft.name;
+      if (draft.email)
+      emailInput.value = draft.email;
+      if (draft.zip)
+      zipInput.value = draft.zip;
+      if (draft.address)
+      addressInput.value = draft.address;
+      function persistDraft()
+      {
+        saveCheckoutDraft(
+          {
+            name: nameInput.value,
+            email: emailInput.value,
+            zip: zipInput.value,
+            address: addressInput.value
+          }
+        );
+      }
+      [
+        nameInput,
+        emailInput,
+        zipInput,
+        addressInput
+      ]
+      .forEach(
+        function (el)
+        {
+          el.addEventListener(
+            "input",
+            persistDraft
+          );
+        }
+      );
+      var cardInput = document.getElementById("co-card"),
+      expiryInput = document.getElementById("co-expiry"),
+      cvvInput = document.getElementById("co-cvv");
+      var cardBrand = document.getElementById("co-card-brand"),
+      cardStatus = document.getElementById("co-card-status"),
+      cardField = cardInput.closest(".card-field"),
+      cvvStatus = document.getElementById("co-cvv-status");
+      function refreshCvvStatus()
+      {
+        var brandName = validateCardNumber(cardInput.value)
+        .brand,
+        need = cvvLength(brandName),
+        v = cvvInput.value;
+        if (!v.length)
+        {
+          cvvStatus.textContent = "";
+          cvvStatus.className = "card-status";
+        }
+        else if (v.length < need)
+        {
+          cvvStatus.textContent = "";
+          cvvStatus.className = "card-status";
+        }
+        else if (v.length === need)
+        {
+          cvvStatus.textContent = "CVV looks valid";
+          cvvStatus.className = "card-status valid";
+        }
+        else {
+          cvvStatus.textContent = "CVV should be " + need + " digits";
+          cvvStatus.className = "card-status invalid";
+        }
+      }
+      cardInput.addEventListener(
+        "input",
+        function ()
+        {
+          var raw = this.value.replace(
+            /\D/g,
+            ""
+          );
+          var v = raw.slice(
+            0,
+            maxCardLength(raw)
+          );
+          var result = validateCardNumber(v);
+          this.value = formatCardNumber(
+            v,
+            result.brand
+          );
+          if (result.brand)
+          {
+            cardBrand.innerHTML = cardBrandLogo(result.brand);
+            cardBrand.classList.remove("is-hidden");
+            cardField.classList.add("has-brand");
+          }
+          else {
+            cardBrand.innerHTML = "";
+            cardBrand.classList.add("is-hidden");
+            cardField.classList.remove("has-brand");
+          }
+          if (v.length < 13)
+          {
+            cardStatus.textContent = "";
+            cardStatus.className = "card-status";
+          }
+          else if (result.valid)
+          {
+            cardStatus.textContent = (result.brand ? result.brand + " • " : "")
+            + "Card number looks valid";
+            cardStatus.className = "card-status valid";
+          }
+          else {
+            cardStatus.textContent = "Check the card number";
+            cardStatus.className = "card-status invalid";
+          }
+          refreshCvvStatus();
+        }
+      );
+      expiryInput.addEventListener(
+        "input",
+        function ()
+        {
+          var v = this.value.replace(
+            /\D/g,
+            ""
+          )
+          .slice(
+            0,
+            4
+          );
+          this.value = v.length > 2 ? v.slice(
+            0,
+            2
+          )
+          + "/" + v.slice(2)
+          : v;
+        }
+      );
+      cvvInput.addEventListener(
+        "input",
+        function ()
+        {
+          var brandName = validateCardNumber(cardInput.value)
+          .brand;
+          this.value = this.value.replace(
+            /\D/g,
+            ""
+          )
+          .slice(
+            0,
+            cvvLength(brandName)
+          );
+          refreshCvvStatus();
+        }
+      );
+      document.getElementById("co-submit")
+      .onclick = function ()
+      {
+        var n = document.getElementById("co-name")
+        .value.trim(),
+        em = document.getElementById("co-email")
+        .value.trim(),
+        ad = document.getElementById("co-address")
+        .value.trim(),
+        z = document.getElementById("co-zip")
+        .value.trim(),
+        cardNo = cardInput.value.replace(
+          /\s/g,
+          ""
+        ),
+        expiry = expiryInput.value.trim(),
+        cvv = cvvInput.value.trim(),
+        er = document.getElementById("co-error");
+        if (
+          !n || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)
+          || !ad || !z
+        )
+        {
+          er.textContent = "Please complete your name, email, address and postal code.";
+          return;
+        }
+        var cardCheck = validateCardNumber(cardNo);
+        if (!cardCheck.valid)
+        {
+          er.textContent = "Please enter a valid card number.";
+          cardInput.focus();
+          return;
+        }
+        if (!validExpiry(expiry))
+        {
+          er.textContent = "Please enter a valid, unexpired date in MM/YY format.";
+          return;
+        }
+        if (
+          cvv.length !== cvvLength(cardCheck.brand)
+        )
+        {
+          er.textContent = "Please enter a valid CVV.";
+          cvvInput.focus();
+          return;
+        }
+        var items = ids.map(
+          function (id)
+          {
+            return {
+              name: find(id)
+              .name,
+              quantity: cart[
+                id
+              ],
+              price: find(id)
+              .price
+            };
+          }
+        );
+        var btn = this;
+        btn.disabled = true;
+        btn.textContent = "Sending order…";
+        er.textContent = "Sending your order securely. Please wait…";
+        fetch(
+          "/api/orders/telegram",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(
+              {
+                name: n,
+                email: em,
+                address: ad,
+                
+                zip: z,
+                total: total,
+                items: items
+              }
+            )
+          }
+        )
+        .then(
+          function (r)
+          {
+            return r.json()
+            .then(
+              function (d)
+              {
+                return {
+                  ok: r.ok,
+                  data: d
+                };
+              }
+            );
+          }
+        )
+        .then(
+          function (x)
+          {
+            if (!x.ok || !x.data.ok)
+            throw new Error(
+              x.data.error || "Order could not be sent"
+            );
+            cart = {
+            };
+            save(
+              "mv_cart",
+              cart
+            );
+            save(
+              LAST_ORDER_EMAIL_KEY,
+              em
+            );
+            clearCheckoutDraft();
+            go("order-confirmation");
+          }
+        )
+        .catch(
+          function (e)
+          {
+            er.textContent = "Almost there! We couldn’t complete your order just yet. Please try again.";
+            btn.disabled = false;
+            btn.textContent = "Place order";
+          }
+        );
+      };
+    }
+    document.addEventListener(
+      "click",
+      function (e)
+      {
+        var t = e.target.closest("[data-action]");
+        if (!t)
+        return;
+        var a = t.getAttribute("data-action"),
+        id = t.getAttribute("data-id");
+        if (a === "home")
+        {
+          go("home");
+        }
+        else if (a === "shop")
+        {
+          filter = "All";
+          go("home");
+          setTimeout(
+            function ()
+            {
+              document.getElementById("collection")
+              .scrollIntoView(
+                {
+                  behavior: "smooth"
+                }
+              );
+            },
+            30
+          );
+        }
+        else if (a === "cat")
+        {
+          filter = t.getAttribute("data-cat");
+          if (
+            filter === "Wishlist" && wishlist.length === 0
+          )
+          toast("Your wishlist is empty");
+          if (path() !== "home")
+          go("home");
+          else {
+            render();
+            setTimeout(
+              function ()
+              {
+                document.getElementById("collection")
+                ?.scrollIntoView(
+                  {
+                    behavior: "smooth"
+                  }
+                );
+              },
+              20
+            );
+          }
+        }
+        else if (a === "product")
+        {
+          go("product/" + id);
+        }
+        else if (a === "add")
+        {
+          add(id);
+        }
+        else if (a === "wish")
+        {
+          wish(id);
+        }
+        else if (a === "qty")
+        {
+          changeQty(
+            id,
+            Number(t.getAttribute("data-delta"))
+          );
+        }
+        else if (a === "remove")
+        {
+          delete cart[
+            id
+          ];
+          save(
+            "mv_cart",
+            cart
+          );
+          render();
+        }
+        else if (a === "checkout")
+        {
+          go("checkout");
+        }
+        else if (a === "back")
+        {
+          history.length > 1 ? history.back()
+          : go("home");
+        }
+        else if (a === "clear")
+        {
+          filter = "All";
+          query = "";
+          render();
+          setTimeout(
+            function ()
+            {
+              document.getElementById("collection")
+              .scrollIntoView(
+                {
+                  behavior: "smooth"
+                }
+              );
+            },
+            20
+          );
+        }
+        else if (a === "rate")
+        {
+          reviewRating = Number(t.getAttribute("data-rating"));
+          document.querySelectorAll("#review-stars button")
+          .forEach(
+            function (b)
+            {
+              b.classList.toggle(
+                "active",
+                Number(b.dataset.rating)
+                <= reviewRating
+              );
+            }
+          );
+        }
+        else if (a === "review")
+        {
+          var name = document.getElementById("review-name")
+          .value.trim(),
+          text = document.getElementById("review-text")
+          .value.trim();
+          if (!text)
+          return toast("Write a comment first");
+          if (
+            !reviews[
+              id
+            ]
+          )
+          reviews[
+            id
+          ]
+          = [
+          ];
+          reviews[
+            id
+          ]
+          .push(
+            {
+              name: name || "Verified customer",
+              text: text,
+              rating: reviewRating,
+              date: new Date()
+              .toISOString()
+            }
+          );
+          save(
+            "mv_reviews",
+            reviews
+          );
+          reviewRating = 5;
+          render();
+          toast("Review posted");
+        }
+        ;
+      }
+    );
+    document.getElementById("cart-icon")
+    .onclick = function ()
+    {
+      go("cart");
+    };
+    document.getElementById("auth-link")
+    .onclick = openLogin;
+    document.getElementById("theme-btn")
+    .onclick = function ()
+    {
+      var d = document.documentElement;
+      var dark = d.getAttribute("data-theme")
+      === "dark";
+      d.setAttribute(
+        "data-theme",
+        dark ? "light" : "dark"
+      );
+      save(
+        "mv_theme",
+        dark ? "light" : "dark"
+      );
+      renderHeader();
+    };
+    document.getElementById("feedback-fab")
+    .onclick = feedback;
+    var savedTheme = load(
+      "mv_theme",
+      "light"
+    );
+    document.documentElement.setAttribute(
+      "data-theme",
+      savedTheme
+    );
+    window.addEventListener(
+      "hashchange",
+      render
+    );
+    window.addEventListener(
+      "resize",
+      syncTopbarHeight
+    );
+    render();
+  }
+);
+</script>
+</body></html>
