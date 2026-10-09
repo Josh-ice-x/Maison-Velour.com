@@ -752,6 +752,8 @@ nav#cats button.active {
   gap: 24px
 }
 .cart-items, .summary {
+  min-width: 0;
+  max-width: 100%;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -759,7 +761,7 @@ nav#cats button.active {
 }
 .cart-row {
   display: grid;
-  grid-template-columns: 70px 1fr auto;
+  grid-template-columns: 70px minmax(0, 1fr) auto;
   gap: 12px;
   align-items: center;
   border-bottom: 1px solid var(--line);
@@ -785,6 +787,7 @@ nav#cats button.active {
 }
 .qty {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 8px;
   margin-top: 8px
@@ -1354,7 +1357,7 @@ footer {
 }
 @media(max-width:760px) {
   .product-hero, .cart-layout {
-    grid-template-columns: 1fr
+    grid-template-columns: minmax(0, 1fr)
   }
   .summary {
     position: static
