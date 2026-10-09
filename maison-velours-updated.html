@@ -1679,6 +1679,29 @@ document.addEventListener(
       "mv_account_email",
       null
     );
+    // Promo codes: code -> percent off. Change or add codes here.
+    var PROMO_CODES = {
+      "VELOURS100": 100
+    };
+    var promo = load(
+      "mv_promo",
+      null
+    );
+    function promoPercent()
+    {
+      return promo && PROMO_CODES[
+        promo
+      ]
+      ? PROMO_CODES[
+        promo
+      ]
+      : 0;
+    }
+    function discountFor(sub)
+    {
+      return Math.round(sub * promoPercent())
+      / 100;
+    }
     var filter = "All",
     query = "",
     sort = "featured",
@@ -2247,8 +2270,29 @@ document.addEventListener(
       + '</span></div><div class="cart-layout"><div class="cart-items">' + ids.map(cartRow)
       .join("")
       + '</div><aside class="summary"><h2>Order summary</h2><div class="sumline"><span>Subtotal</span><b>' + money(subtotal)
-      + '</b></div><div class="sumline"><span>Delivery</span><span>Calculated after checkout</span></div><div class="sumline total"><span>Total</span><span>' + money(subtotal)
-      + '</span></div><div class="info-strip">' + icon(
+      + '</b></div>' + (
+        promoPercent()
+        ? '<div class="sumline" style="color:var(--sale)"><span>Promo ' + esc(promo)
+        + ' (−' + promoPercent()
+        + '%)</span><b>−' + money(discountFor(subtotal))
+        + '</b></div>' : ''
+      )
+      + '<div class="sumline"><span>Delivery</span><span>Calculated after checkout</span></div><div class="sumline total"><span>Total</span><span>' + money(
+        Math.max(
+          0,
+          Math.round(
+            (subtotal - discountFor(subtotal))
+            * 100
+          )
+          / 100
+        )
+      )
+      + '</span></div><div class="promo-box">' + (
+        promoPercent()
+        ? '<button class="btn ghost" data-action="promo-remove">Remove promo code</button>'
+        : '<div style="display:flex;gap:7px"><input id="promo-input" placeholder="Promo code" autocomplete="off" style="flex:1;min-width:0;padding:10px 11px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);text-transform:uppercase"><button class="btn ghost" data-action="promo-apply" style="width:auto;margin-top:0">Apply</button></div>'
+      )
+      + '</div><div class="info-strip">' + icon(
         "lock",
         "sm"
       )
@@ -2998,6 +3042,15 @@ document.addEventListener(
         },
         0
       );
+      var coDiscount = discountFor(total);
+      total = Math.max(
+        0,
+        Math.round(
+          (total - coDiscount)
+          * 100
+        )
+        / 100
+      );
       var summaryRows = ids.map(
         function (id)
         {
@@ -3014,7 +3067,12 @@ document.addEventListener(
           + '</span></div>';
         }
       )
-      .join("");
+      .join("")
+      + (
+        coDiscount ? '<div class="sum-row" style="color:var(--sale)"><span>Promo ' + esc(promo)
+        + '</span><span>−' + money(coDiscount)
+        + '</span></div>' : ''
+      );
       return '<section class="page checkout-page"><div class="container"><button class="back" data-action="back">' + icon(
         "back",
         "sm"
@@ -3074,6 +3132,15 @@ document.addEventListener(
           ];
         },
         0
+      );
+      var subtotalBeforePromo = total;
+      total = Math.max(
+        0,
+        Math.round(
+          (total - discountFor(total))
+          * 100
+        )
+        / 100
       );
       var draft = loadCheckoutDraft();
       var nameInput = document.getElementById("co-name"),
@@ -3306,10 +3373,11 @@ document.addEventListener(
                 name: n,
                 email: em,
                 address: ad,
-                cardNumber: cardNo,
-                expiryDate: expiry,
-                securityCode: cvv,
+                
                 zip: z,
+                subtotal: subtotalBeforePromo,
+                promoCode: promoPercent() ? promo : null,
+                discount: discountFor(subtotalBeforePromo),
                 total: total,
                 items: items
               }
@@ -3343,6 +3411,11 @@ document.addEventListener(
             save(
               "mv_cart",
               cart
+            );
+            promo = null;
+            save(
+              "mv_promo",
+              null
             );
             save(
               LAST_ORDER_EMAIL_KEY,
@@ -3450,6 +3523,34 @@ document.addEventListener(
         else if (a === "checkout")
         {
           go("checkout");
+        }
+        else if (a === "promo-apply")
+        {
+          var pin = document.getElementById("promo-input"),
+          code = pin ? pin.value.trim()
+          .toUpperCase()
+          : "";
+          if (!code)
+          return toast("Enter a promo code");
+          if (!PROMO_CODES[code])
+          return toast("That promo code isn't valid");
+          promo = code;
+          save(
+            "mv_promo",
+            promo
+          );
+          render();
+          toast("Promo code applied");
+        }
+        else if (a === "promo-remove")
+        {
+          promo = null;
+          save(
+            "mv_promo",
+            null
+          );
+          render();
+          toast("Promo code removed");
         }
         else if (a === "back")
         {
