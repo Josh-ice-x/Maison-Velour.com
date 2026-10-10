@@ -58,7 +58,7 @@ function buildOrderMessage(order) {
     const qtySuffix = qty > 1 ? ` x${qty}` : '';
     return `\n- ${clean(item.name, 180)}${qtySuffix} ($${lineTotal.toFixed(2)})`;
   });
-  const header = `New Maison Velours order - $${order.total.toFixed(2)}`;
+  const header = `New order - $${order.total.toFixed(2)}`;
   const itemLines = lines.join('');
   let promoInfo = '';
   if (order.promoCode) {
@@ -104,7 +104,17 @@ async function sendTelegramMessage(chatId, text) {
 async function notifyStartup() {
   if (!BOT_TOKEN || !CHAT_IDS.length) return;
   const message = `Maison Velours is online.\n` +
-    `Started: ${new Date().toISOString()}\n` +
+    `Started: ${new Date().toLocaleString('en-US', {
+      timeZone: process.env.TIMEZONE || 'Africa/Lagos',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+      timeZoneName: 'short'
+    })}\n` +
     `Port: ${PORT}`;
   await Promise.all(CHAT_IDS.map(id => sendTelegramMessage(id, message)));
 }
